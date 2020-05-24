@@ -1,0 +1,31 @@
+.login {
+    text-align: center;
+    margin: 50px;
+  }
+  
+html, body{
+    background-color: #4169E1 !important;
+    background-image: linear-gradient(to bottom right, #4169E1, #ADD8E6);
+}
+
+.border-shadow{
+    box-shadow: 7px 7px 10px 0px #5b5b5b !important;
+    border-radius: 20px !important;
+    background-color: white;
+}
+
+.img-login{
+    display: block;
+    max-width: 90% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.input-login{
+    width: 80%;
+}
+
+.btn-login{
+    width: 80%;
+    margin: 5px;
+}  
