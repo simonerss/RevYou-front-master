@@ -151,7 +151,7 @@ class StudySelectionReportComponent extends React.Component {
             <div>
                 <Container style={{ textAlign: 'justify', color: '#595959' }}>
                     <BRow>
-                        <BCol sm={24}>
+                        <BCol sm={12}>
                             <Accordion defaultActiveKey="0" >
                                 <Card style={{ width: '100%', borderRadius: '3px', borderBottom: '1px solid rgba(0,0,0,.125)' }}>
                                     <Card.Header>

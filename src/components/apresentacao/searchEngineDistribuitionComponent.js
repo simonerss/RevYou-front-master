@@ -81,6 +81,7 @@ class SearchEngineDistribuitionComponent extends React.Component {
     render() {
 
         const data = this.props.data;
+        
         const sufixFileName = () => {
             const date = new Date();
             const dia = date.getDate();

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../../src/revyou-css.css';
 import { Accordion, Card, Button, Container, Row as BRow, Col as BCol } from 'react-bootstrap';
 import { Table, Row, Col, Button as ANButton, Input } from 'antd';
 import Highlighter from 'react-highlight-words';
@@ -104,9 +105,10 @@ class ProjectDetailsComponent extends React.Component {
         const StandardQuery = this.props.StandardQuery;
         const SearchKeyword = this.props.SearchKeyword;
         const SelectionCriteria = this.props.SelectionCriteria;
-        const Languagues = this.props.Languagues;
-        const SearchEngines = this.props.SearchKeyword;
+        const Languagues = this.props.Languagues; 
+        const SearchEngines = this.props.SearchEngines; 
         /*AdaptedQuery, SelectionSteps, Study, AdaptedQuery, ExtractionSteps,*/
+
 
         const inviteds = (this.props.inviteds).map(data => {
             return ({
@@ -326,48 +328,48 @@ class ProjectDetailsComponent extends React.Component {
                                         <Accordion.Collapse eventKey="3">
                                             <Card.Body style={{ padding: '10px 15px', width: '100%' }}>
                                                 <Row>
-                                                    <Col span={24}>
+                                                    <Col span={24} style={{ padding:'3px',}}>
                                                         <h5><b>Main Question</b></h5><hr />
                                                     </Col>
                                                 </Row>
                                                 <Row className="row row-odd">
-                                                    <Col span={24}>
+                                                    <Col span={24} style={{ padding:'3px',}}>
                                                         <b>Description:{'\u00A0'}</b> {((MainQuestion.description == null) || (MainQuestion == null)) ? 'Uninformed' : MainQuestion.description}
                                                     </Col>
                                                 </Row><br /><br />
 
                                                 <Row>
-                                                    <Col span={24}>
+                                                    <Col span={24} v>
                                                         <h6><b>PICOC:</b></h6><hr />
                                                     </Col>
                                                 </Row>
                                                 <Row className="row row-odd">
-                                                    <Col span={12}>
+                                                    <Col span={12} style={{ padding:'2px 4px',}}>
                                                         <b>Population:{'\u00A0'}</b> {((MainQuestion.population == null) ? 'Uninformed' : MainQuestion.population)}<br />
                                                     </Col>
-                                                    <Col span={12}>
+                                                    <Col span={12} style={{ padding:'2px 4px',}}>
                                                         <b>Intervation:{'\u00A0'}</b> {(MainQuestion.intervation == null) ? 'Uninformed' : MainQuestion.intervation}<br />
                                                     </Col>
                                                 </Row>
                                                 <Row className="row row-even">
-                                                    <Col span={12}>
+                                                    <Col span={12} style={{ padding:'2px 4px',}}>
                                                         <b>Control:{'\u00A0'}</b> {(MainQuestion.control == null) ? 'Uninformed' : MainQuestion.control}
                                                     </Col>
-                                                    <Col span={12}>
+                                                    <Col span={12} style={{ padding:'2px 4px',}}>
                                                         <b>Results:{'\u00A0'}</b> {(MainQuestion.results == null) ? 'Uninformed' : MainQuestion.results}
                                                     </Col>
                                                 </Row>
                                                 <Row className="row row-odd">
-                                                    <Col span={12}>
+                                                    <Col span={12} style={{ padding:'2px 4px',}}>
                                                         <b>Context:{'\u00A0'}</b> {(MainQuestion.context == null) ? 'Uninformed' : MainQuestion.context}
                                                     </Col>
-                                                    <Col span={12}>
+                                                    <Col span={12} style={{ padding:'2px 4px',}}>
                                                         <b>Design:{'\u00A0'}</b> {(MainQuestion.design == null) ? 'Uninformed' : MainQuestion.design}
                                                     </Col>
                                                 </Row><br /><br />
 
                                                 <Row>
-                                                    <Col span={24}>
+                                                    <Col span={24} style={{ padding:'2px 4px',}}>
                                                         <h5><b>Secondary Question:</b></h5><hr />
                                                     </Col>
                                                 </Row>
@@ -423,7 +425,7 @@ class ProjectDetailsComponent extends React.Component {
 
                                                 <Row>
                                                     <Col span={24}>
-                                                        <h5><b>>Selection Criteria</b></h5><hr />
+                                                        <h5><b>Selection Criteria</b></h5><hr />
                                                     </Col>
                                                 </Row>
                                                 <Row>

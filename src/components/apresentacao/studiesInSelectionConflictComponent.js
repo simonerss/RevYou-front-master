@@ -97,16 +97,15 @@ class StudiesInSelectionConflictComponent extends React.Component {
 
         const columns = [
             {
-                title: 'Title', dataIndex: 'title', key: 'title', width: 250,
+                title: 'Title', dataIndex: 'title', key: 'title', width: 300,
                 ...this.getColumnSearchProps('title'),
-                render: text => <Link to="#" >{text}</Link>,
-                // render: text => <Link to="#" onClick={this.showModal}>{text}</Link>,
+                // render: text => <Link to="#" >{text}</Link>,
             },
-            { title: 'Authors', dataIndex: 'authors', key: 'authors', width: 180, ...this.getColumnSearchProps('authors') },
+            { title: 'Authors', dataIndex: 'authors', key: 'authors', width: 200, ...this.getColumnSearchProps('authors') },
             // { title: 'Keywords', dataIndex: 'keywords', key: 'keywords', width: 150, ...this.getColumnSearchProps('keywords') },
             { title: 'Year', dataIndex: 'year', key: 'year', width: 100, ...this.getColumnSearchProps('year') },
-            { title: 'Search Engine', dataIndex: 'base', key: 'base', width: 180, ...this.getColumnSearchProps('base') },
-            { title: 'Selection Result Status', dataIndex: 'sr_status', key: 'sr_status', width: 150, ...this.getColumnSearchProps('sr_status') },
+            { title: 'Search Engine', dataIndex: 'base', key: 'base', width: 200, ...this.getColumnSearchProps('base') },
+            { title: 'Selection Result Status', dataIndex: 'selectionstatus', key: 'selectionstatus', width: 200, ...this.getColumnSearchProps('selectionstatus') },
             // { title: 'Cite Key', dataIndex: 'citekey', key: 'citekey', width: 180, ...this.getColumnSearchProps('citekey') },
             // { title: 'Abstract', dataIndex: 'abstract', key: 'abstract', width: 200, ...this.getColumnSearchProps('abstract') },
             // { title: 'Venue', dataIndex: 'venue', key: 'venue', width: 150, ...this.getColumnSearchProps('venue') },
@@ -138,7 +137,7 @@ class StudiesInSelectionConflictComponent extends React.Component {
                 { value: ((data.keywords != null) ? data.keywords : "") },
                 { value: ((data.year != null) ? data.year : "") },
                 { value: ((data.url != null) ? data.url : "") },
-                { value: ((data.sr_status != null) ? data.sr_status : "") },
+                { value: ((data.selectionstatus != null) ? data.selectionstatus : "") },
             ];
         });
         const multiDataselectionConflictXLSX = [{
@@ -148,7 +147,7 @@ class StudiesInSelectionConflictComponent extends React.Component {
                 { title: 'Keywords', width: { wpx: 250 } },
                 { title: 'Year', width: { wpx: 250 } },
                 { title: 'URL', width: { wpx: 250 } },
-                { title: 'Selection Result Status', width: { wpx: 250 } }
+                { title: 'Selection Result Status', width: { wpx: 250 } },
             ],
             data: selectionConflictXLSX
         }];
@@ -157,12 +156,12 @@ class StudiesInSelectionConflictComponent extends React.Component {
         const selectionConflictCSV = data.map(data => {
             return [
                 data.title, data.authors, data.keywords, data.year,
-                data.url, data.sr_status,
+                data.url, data.selectionstatus
             ]
         });
         selectionConflictCSV.unshift([
             "Title", "Authors", "Keywords", "Year",
-            "URL", "Selection Result Status",
+            "URL", "Selection Result Status"
         ]);
         
         return (

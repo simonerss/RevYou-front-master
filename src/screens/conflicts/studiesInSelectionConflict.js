@@ -25,38 +25,24 @@ class StudiesInSelectionConflict extends Component {
                     key: data.id,
                     title: data.title,
                     authors: data.authors,
+                    year: data.year,                    
+                    base: data.base,
+                    sr_status: data.sr_status,
                     citekey: data.citekey,
                     abstract: data.abstract,
                     keywords: data.keywords,
-                    venue: data.venue,
-                    year: data.year,
+                    venue: data.venue,                    
                     pages: data.pages,
                     volume: data.volume,
                     url: data.url,
                     issn: data.issn,
                     doi: data.doi,
-                    base: data.base,
                     search: data.search,
                     generalStatus: data.generalStatus,
                     venueType: data.venueType,
                     createdAt: data.createdAt,
                     updatedAt: data.updatedAt,
-                    sr_id: data.sr_id,
-                    sr_status: data.sr_status,
-                    sr_createdat: data.sr_createdat,
-                    sr_updatedat: data.sr_updatedat,
-                    ss_id: data.ss_id,
-                    startDate: data.startDate,
-                    endDate: data.endDate,
-                    dateChecker: data.dateChecker,
-                    dateConflicts: data.dateConflicts,
-                    method: data.method,
-                    ss_status: data.ss_status,
-                    ratedContent: data.ratedContent,
-                    numCheckerStudy: data.numCheckerStudy,
-                    scoreBoard: data.scoreBoard,
-                    ss_createdat: data.ss_createdat,
-                    ss_updatedat: data.ss_updatedat
+                    selectionstatus: 'in_conflict',
                 };
             });
             this.setState({ data });
@@ -67,7 +53,7 @@ class StudiesInSelectionConflict extends Component {
         console.log(this.state);
         return (
             <div>
-                <h3>Studies In Selection Conflict</h3><hr />
+                <h3>Conflict Studies In Selection Step</h3><hr />
                 <StudiesInSelectionConflictComponent {...this.state} />
             </div>
         );

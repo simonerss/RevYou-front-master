@@ -108,7 +108,7 @@ class ExtractionDistribuitionComponent extends React.Component {
         }
         const columns = [
             { title: 'Extractor Name', dataIndex: 'name', key: 'name', width: 150, ...this.getColumnSearchProps('name') },
-            { title: 'Date Checker', dataIndex: 'email', key: 'email', width: 150, ...this.getColumnSearchProps('email') },
+            { title: 'E-mail', dataIndex: 'email', key: 'email', width: 150, ...this.getColumnSearchProps('email') },
             {
                 title: 'Action',
                 key: 'action', 

@@ -1,16 +1,19 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, /*ResponsiveContainer*/ } from 'recharts';
 import { Row, Col } from 'antd';
 
 class GraphicIdentifiedByAdaptedQueryComponent extends React.Component {
 
     render() {
         const data = this.props.data;
+        
         return (
             <Row style={{ backgroundColor: '#ffffffff' }}>
                 <Col sm={12}>
                     <h3>Identified Studies by Adapted Query</h3>
                     <hr />
+                    {/* <ResponsiveContainer> */}
+                    {/* <LineChart width={600} height={300} data={data} */}
                     <LineChart width={600} height={300} data={data.StudyByadaptedQueryAmount}
                         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                         <XAxis dataKey="name" />
@@ -20,6 +23,7 @@ class GraphicIdentifiedByAdaptedQueryComponent extends React.Component {
                         <Legend />
                         <Line type="monotoneX" dataKey="value" stroke="#82ca9d" />
                     </LineChart>
+                    {/* </ResponsiveContainer> */}
                 </Col>
             </Row>
         );

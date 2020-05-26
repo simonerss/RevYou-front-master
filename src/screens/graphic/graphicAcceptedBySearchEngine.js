@@ -21,7 +21,7 @@ class GraphicAcceptedBySearchEngine extends React.Component {
 
     getData() {
         const id = this.props.match.params;
-        fetch(`http://localhost:5000/dataGraphic/rejectedByCriteria/${id.refproject}`)
+        fetch(`http://localhost:5000/dataGraphic/acceptedBySearchEngine/${id.refproject}`)
             .then(data => data.json().then(data =>
                 this.setState({ data })))
             .catch(erro => this.setState({ erro }));
