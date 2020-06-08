@@ -2,7 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Table, Input, Button, Col, Row } from 'antd';
 import Highlighter from 'react-highlight-words';
-import { SearchOutlined, RightCircleFilled } from '@ant-design/icons';
+import { SearchOutlined, /*RightCircleFilled*/ } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 import ReactExport from "react-data-export";
 import { CSVLink } from "react-csv";

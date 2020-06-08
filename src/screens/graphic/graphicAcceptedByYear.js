@@ -31,7 +31,7 @@ class GraphicAcceptedByYear extends React.Component {
         return (
             <div>
                 <React.Fragment>
-                    <h3>Accepted Studies by Year of Publication</h3>
+                    <h3>Accepted Studies by Publication Year</h3>
                     <hr />                
                     <GraphicAcceptedByYearComponent {...this.state} ref={this.componentRef} />
                     <Button onClick={() => exportComponentAsJPEG(this.componentRef)}>

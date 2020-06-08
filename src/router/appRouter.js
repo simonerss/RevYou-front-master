@@ -49,6 +49,7 @@ import ResearcherExtractionDistribuition from "../screens/distribuition/research
 import ResearcherStudiesExtractionList from "../screens/studyExtraction/researcherStudiesExtractionList";
 import DataExtractionDetails from "../screens/studyExtraction/dataExtractionDetails";
 import GraphicBubble from "../screens/graphic/graphicBubble";
+import GraphicBubbleIdentifiedStudies from "../screens/graphic/graphicBubbleIdentifiedStudies";
 
 //--------TESTES:-----------------
 import TestExport from "../screens/graphic/testeExportImage";
@@ -208,6 +209,12 @@ const appRoutes = [
     name: "GraphicBubble",
     path: "/graphicBubble",
     component: GraphicBubble,
+    exact: false,
+  },
+  {
+    name: "GraphicBubbleIdentifiedStudies",
+    path: "/graphicBubbleIdentifiedStudies/:refproject",
+    component: GraphicBubbleIdentifiedStudies,
     exact: false,
   },
   {
