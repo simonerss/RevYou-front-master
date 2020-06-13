@@ -2,6 +2,9 @@
   "name": "revyou-front",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "^10.16.3"
+  },
   "dependencies": {
     "@ant-design/icons": "^4.1.0",
     "antd": "^3.26.17",
