@@ -3,11 +3,6 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import { Row, Col } from 'antd';
 
 
-class GraphicRejectedByCriteriaComponent extends React.Component {
-
-    render() {
-        const data = this.props.data.rejectedByCriteriaAmount;
-
         // let date = new Date();
         // let dia = date.getDate();
         // let mes = date.getMonth();
@@ -15,7 +10,10 @@ class GraphicRejectedByCriteriaComponent extends React.Component {
         // let ano = date.getFullYear();
         // let r = Math.random().toString(36).substring(7).toUpperCase();
 
+class GraphicRejectedByCriteriaComponent extends React.Component {
 
+    render() {
+        const data = this.props.data.rejectedByCriteriaAmount;
         return (
             <Row style={{ backgroundColor: '#ffffffff' }}>
                 <Col sm={12}>

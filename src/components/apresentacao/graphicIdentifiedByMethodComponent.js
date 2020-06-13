@@ -25,7 +25,6 @@ class GraphicIdentifiedByMethodComponent extends React.Component {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        {/* <LabelList dataKey="x" /> */}
                         <Bar dataKey="amount" fill="#990000" />
                     </BarChart>
                     <hr />
@@ -37,7 +36,6 @@ class GraphicIdentifiedByMethodComponent extends React.Component {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        {/* <LabelList dataKey="x" /> */}
                         <Bar dataKey="amount" fill="#cc0000" />
                     </BarChart>
                     <hr />
