@@ -251,6 +251,7 @@ class IdentifiedStudiesComponent extends React.Component {
                                             Identified Studies per Adapted Query
                                         </Button>
                                     </Link>
+
                                 </Col>
                             </Row>
                         </Col>

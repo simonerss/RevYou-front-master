@@ -1,0 +1,9 @@
+.row{margin: 0px;}
+
+.row-even{ padding: 4px; background-color: #ffffff;}
+
+.row-odd{ padding: 4px; background-color: #f2f2f2;}
+
+.row-even col{padding:7px;}
+
+.row-odd col{padding:7px;}
