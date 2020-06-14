@@ -63,6 +63,7 @@ class ProjectDetails extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (      
       <div>
         <ProjectDetailsComponent {...this.state} />

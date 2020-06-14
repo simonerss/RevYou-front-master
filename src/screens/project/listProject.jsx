@@ -40,7 +40,6 @@ class Project extends Component {
     const email = this.props.login.email;
     if(email){
       HTTP.get(`researcher/my-projects/${email}`).then(res => {
-        console.log(res)
         let data = res.data.map(data => {
           return {            
             key: data.id,
@@ -54,7 +53,7 @@ class Project extends Component {
     }
   }
 
-  render() {
+  render() {    
     return <ProjectComponent {...this.state} handleDelete={this.handleDelete} handleEdit={this.handleEdit} />;
   }
 }
