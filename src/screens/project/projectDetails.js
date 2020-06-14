@@ -62,12 +62,20 @@ class ProjectDetails extends Component {
       .then(res => {
         let MainQuestion = res.data;
         this.setState({ MainQuestion });
-      });
-
-      fetch(`http://localhost:5000/report/standardQuery/${id.refproject}`)
-      .then(StandardQuery => StandardQuery.json().then(StandardQuery =>
-        this.setState({ StandardQuery })))
+      })
       .catch(erro => this.setState({ erro }));
+
+      HTTP.get(`report/standardQuery/${id.refproject}`)
+      .then(res => {
+        let StandardQuery = res.data;
+        this.setState({ StandardQuery });
+      })
+      .catch(erro => this.setState({ erro }));
+
+      // fetch(`http://localhost:5000/report/standardQuery/${id.refproject}`)
+      // .then(StandardQuery => StandardQuery.json().then(StandardQuery =>
+      //   this.setState({ StandardQuery })))
+      // .catch(erro => this.setState({ erro }));
   }
 
   render() {
