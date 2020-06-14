@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProjectDetailsComponent from '../../components/apresentacao/projectDetailsComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {HTTP} from '../../services/config';
 
 class ProjectDetails extends Component {
 
@@ -13,6 +14,7 @@ class ProjectDetails extends Component {
       researchers: [],
       inviteds: [],
       MainQuestion: {},
+      // MainQuestionI: {},
       SecondaryQuestion: [],
       StandardQuery: [],
       SearchKeyword: [],
@@ -51,10 +53,16 @@ class ProjectDetails extends Component {
         })))
       .catch(erro => this.setState({ erro }));
 
-      fetch(`http://localhost:5000/report/mainquestion/${id.refproject}`)
-      .then(MainQuestion => MainQuestion.json().then(MainQuestion =>
-        this.setState({ MainQuestion })))
-      .catch(erro => this.setState({ erro }));
+      // fetch(`http://localhost:5000/report/mainquestion/${id.refproject}`)
+      // .then(MainQuestion => MainQuestion.json().then(MainQuestion =>
+      //   this.setState({ MainQuestion })))
+      // .catch(erro => this.setState({ erro }));
+
+      HTTP.get(`report/mainquestion/${id.refproject}`)
+      .then(res => {
+        let MainQuestion = res.data;
+        this.setState({ MainQuestion });
+      });
 
       fetch(`http://localhost:5000/report/standardQuery/${id.refproject}`)
       .then(StandardQuery => StandardQuery.json().then(StandardQuery =>
