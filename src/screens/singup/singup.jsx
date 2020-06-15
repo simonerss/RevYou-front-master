@@ -23,13 +23,11 @@ class Singup extends Component {
     
     
     handleSubmit (values) {
-        console.log(values);
         HTTP.post(`researcher`, {
             name: values.name,
             email: values.email,
             password: values.password
         }).then(res => {
-                console.log(res);
                 message.success('You have successfully registered');
                 this.setState({
                     redirect: true

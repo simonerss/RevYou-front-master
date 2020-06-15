@@ -95,7 +95,6 @@ class ProjectDetailsComponent extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         const data = this.props.data;
         const coordinator = this.props.coordinator;
         const researchers = this.props.researchers;

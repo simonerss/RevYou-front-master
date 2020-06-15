@@ -89,7 +89,7 @@ class listProject extends React.Component {
         key: 'name',
         width: 200,        
         ...this.getColumnSearchProps('name'),
-        // render: text => <Link to="/project/protocol">{text}</Link>,
+        render: text => <Link to="/project/protocol">{text}</Link>,
       },
       {
         title: 'Review Type',
