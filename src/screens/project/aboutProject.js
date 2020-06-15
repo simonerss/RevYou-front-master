@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AboutProjectComponent from '../../components/apresentacao/aboutProjectComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {HTTP} from '../../services/config';
 
 class AboutProject extends Component {
 
@@ -21,18 +22,18 @@ class AboutProject extends Component {
 
   getData() {
     const id = this.props.match.params;
-    fetch(`http://localhost:5000/report/aboutproject/${id.refproject}`)
-      .then(data => data.json().then(data =>
-        this.setState({
-          data: data,
-          coordinator: data.ProjectCoordinator,
-          researchers: data.Researchers
-        })))
-      .catch(erro => this.setState({ erro }));
+
+    HTTP.get(`report/show/${id.refproject}`)
+    .then(res => {
+        let data = res.data;
+        let coordinator = res.data.ProjectCoordinator;
+        let researchers = res.data.Researchers;
+        this.setState({ data, coordinator, researchers });
+    }).catch(erro => this.setState({ erro }));
+
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <AboutProjectComponent {...this.state} />

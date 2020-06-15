@@ -21,10 +21,11 @@ class SelfSelectionDistribuition extends Component {
     getData() {
         const id = this.props.match.params;
 
-        fetch(`http://localhost:5000/researcher/by/${id.refresearcher}`)
-            .then(researcher => researcher.json().then(researcher =>
-                this.setState({ researcher })))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`researcher/by/${id.refresearcher}`)
+            .then(res => {
+                let researcher = res.data;
+                this.setState({ researcher });
+            }).catch(erro => this.setState({ erro }));
 
         HTTP.get(`studyAssigned/distribuition/${id.refproject}/${id.refresearcher}`).then(res => {
             let data = res.data.map(data => {

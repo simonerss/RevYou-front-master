@@ -31,10 +31,11 @@ class StudySelectionReport extends Component {
     getData() {
         const id = this.props.match.params;
 
-        fetch(`http://localhost:5000/study/specificStudy/${id.refstudy}`)
-            .then(dataStudy => dataStudy.json().then( dataStudy =>
-                this.setState({ dataStudy })))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`study/specificStudy/${id.refstudy}`)
+        .then(res => {
+            let dataStudy = res.data;
+            this.setState({ dataStudy });
+        }).catch(erro => this.setState({ erro }));
 
         HTTP.get(`selection/step/studySelectionData/${id.refstudy}`).then(res => {
             let data = res.data.map(data => {

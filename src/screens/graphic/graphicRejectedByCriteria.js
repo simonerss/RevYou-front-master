@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import GraphicRejectedByCriteriaComponent from '../../components/apresentacao/graphicRejectedByCriteriaComponent';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from "react-component-export-image";
 import { Button } from 'antd';
+import { HTTP } from '../../services/config';
 
 class GraphicRejectedByCriteria extends Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -21,10 +22,11 @@ class GraphicRejectedByCriteria extends Component {
 
     getData() {
         const id = this.props.match.params;
-        fetch(`http://localhost:5000/dataGraphic/rejectedByCriteria/${id.refproject}`)
-            .then(data => data.json().then(data =>
-                this.setState({ data })))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`dataGraphic/rejectedByCriteria/${id.refproject}`)
+            .then(res => {
+                let data = res.data;
+                this.setState({ data });
+            }).catch(erro => this.setState({ erro }));
     }
 
     render() {

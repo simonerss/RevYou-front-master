@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import GraphicAcceptedBySearchEngineComponent from '../../components/apresentacao/graphicAcceptedBySearchEngineComponent';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from "react-component-export-image";
 import { Button } from 'antd';
+import { HTTP } from '../../services/config';
 
 class GraphicAcceptedBySearchEngine extends React.Component {
 
@@ -21,10 +22,11 @@ class GraphicAcceptedBySearchEngine extends React.Component {
 
     getData() {
         const id = this.props.match.params;
-        fetch(`http://localhost:5000/dataGraphic/acceptedBySearchEngine/${id.refproject}`)
-            .then(data => data.json().then(data =>
-                this.setState({ data })))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`dataGraphic/acceptedBySearchEngine/${id.refproject}`)
+            .then(res => {
+                let data = res.data;
+                this.setState({ data });
+            }).catch(erro => this.setState({ erro }));
     }
 
     render() {

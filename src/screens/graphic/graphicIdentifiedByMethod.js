@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import GraphicIdentifiedByMethodComponent from '../../components/apresentacao/graphicIdentifiedByMethodComponent';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from "react-component-export-image";
 import { Button } from 'antd';
+import {HTTP} from '../../services/config';
 
 class GraphicIdentifiedByMethod extends React.Component {
 
@@ -26,20 +27,24 @@ class GraphicIdentifiedByMethod extends React.Component {
     getData() {
         const id = this.props.match.params;
 
-        fetch(`http://localhost:5000/dataGraphic/identifiedByManualsearch/${id.refproject}`)
-            .then(dataManualAmount => dataManualAmount.json().then(dataManualAmount =>
-                this.setState({ dataManualAmount })))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`dataGraphic/identifiedByManualsearch/${id.refproject}`)
+            .then(res => {
+                let dataManualAmount = res.data;
+                this.setState({ dataManualAmount });
+            }).catch(erro => this.setState({ erro }));
 
-        fetch(`http://localhost:5000/dataGraphic/identifiedByAutomaticSearch/${id.refproject}`)
-            .then(dataAutomaticAmount => dataAutomaticAmount.json().then(dataAutomaticAmount =>
-                this.setState({ dataAutomaticAmount })))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`dataGraphic/identifiedByAutomaticSearch/${id.refproject}`)
+            .then(res => {
+                let dataAutomaticAmount = res.data;
+                this.setState({ dataAutomaticAmount });
+            }).catch(erro => this.setState({ erro }));
 
-        fetch(`http://localhost:5000/dataGraphic/byAutomaticSearchMethod/${id.refproject}`)
-            .then(dataAutomaticMethod => dataAutomaticMethod.json().then(dataAutomaticMethod =>
-                this.setState({ dataAutomaticMethod })))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`dataGraphic/byAutomaticSearchMethod/${id.refproject}`)
+            .then(res => {
+                let dataAutomaticMethod = res.data;
+                this.setState({ dataAutomaticMethod });
+            }).catch(erro => this.setState({ erro }));
+
     }
 
     render() {

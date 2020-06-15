@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SelectionDistribuitionComponent from '../../components/apresentacao/selectionDistribuitionComponent';
-// import { HTTP } from '../../services/config';
+import { HTTP } from '../../services/config';
 
 class SelectionDistribuition extends Component {
 
@@ -21,18 +21,17 @@ class SelectionDistribuition extends Component {
     }
 
     getData() {
-        const id = this.props.match.params;
         const login = this.props.login;
         this.setState({login: login});
 
-        fetch(`http://localhost:5000/report/aboutproject/${id.refproject}`)
-            .then(data => data.json().then(data =>
-                this.setState({
-                    data: data,
-                    coordinator: data.ProjectCoordinator,
-                    researchers: data.Researchers
-                })))
-            .catch(erro => this.setState({ erro }));
+        const id = this.props.match.params;
+        HTTP.get(`report/aboutproject/${id.refproject}`)
+            .then(res => {
+                let data = res.data;
+                let coordinator = res.data.ProjectCoordinator;
+                let researchers = res.data.Researchers;
+                this.setState({ data, coordinator, researchers });
+            }).catch(erro => this.setState({ erro }));
     }
     
     render() {

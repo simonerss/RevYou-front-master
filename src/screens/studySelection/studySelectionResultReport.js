@@ -24,15 +24,17 @@ class StudySelectionResultReport extends Component {
         const idSelStep = this.props.match.params.refselstep;
         const idReseacher = this.props.match.params.refresearcher;
 
-        fetch(`http://localhost:5000/study/specificStudy/${idStudy}`)
-            .then(dataStudy => dataStudy.json().then(dataStudy =>
-                this.setState({ dataStudy })))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`study/specificStudy/${idStudy}`)
+        .then(res => {
+            let dataStudy = res.data;
+            this.setState({ dataStudy });
+        }).catch(erro => this.setState({ erro }));
 
-        fetch(`http://localhost:5000/selection/step/studySpecificSelectionStep/${idSelStep}/${idReseacher}`)
-            .then(dataSelStep => dataSelStep.json().then(dataSelStep =>
-                this.setState({ dataSelStep })))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`selection/step/studySpecificSelectionStep/${idSelStep}/${idReseacher}`)
+        .then(res => {
+            let dataSelStep = res.data;
+            this.setState({ dataSelStep });
+        }).catch(erro => this.setState({ erro }));
 
         HTTP.get(`selection/step/result/${idStudy}/${idSelStep}`).then(res => {
             let dataStudyResult = res.data.map(dataStudyResult => {

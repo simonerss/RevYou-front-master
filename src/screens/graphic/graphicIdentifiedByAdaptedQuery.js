@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import GraphicIdentifiedByAdaptedQueryComponent from '../../components/apresentacao/graphicIdentifiedByAdaptedQueryComponent';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from "react-component-export-image";
 import { Button } from 'antd';
+import {HTTP} from '../../services/config';
 
 class GraphicIdentifiedByAdaptedQuery extends Component {
 
@@ -21,10 +22,11 @@ class GraphicIdentifiedByAdaptedQuery extends Component {
 
     getData() {
         const id = this.props.match.params;
-        fetch(`http://localhost:5000/dataGraphic/byAdaptedQuery/${id.refproject}`)
-            .then(data => data.json().then(data =>
-                this.setState({ data })))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`dataGraphic/byAdaptedQuery/${id.refproject}`)
+            .then(res => {
+                let data = res.data;
+                this.setState({ data });
+            }).catch(erro => this.setState({ erro }));
     }
 
     render() {

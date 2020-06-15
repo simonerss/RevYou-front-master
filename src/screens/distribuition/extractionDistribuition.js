@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ExtractionDistribuitionComponent from '../../components/apresentacao/extractionDistribuitionComponent';
+import { HTTP } from '../../services/config';
 
 class ExtractionDistribuition extends Component {
 
@@ -8,7 +9,6 @@ class ExtractionDistribuition extends Component {
         super(props);
         this.state = {
             data: {},
-            // Decisor: [],
             Extractor: [],
         };
         this.getData = this.getData.bind(this);
@@ -30,14 +30,13 @@ class ExtractionDistribuition extends Component {
 
     getData() {
         const id = this.props.match.params;
-        fetch(`http://localhost:5000/extraction/step/report/${id.refextraction}`)
-            .then(data => data.json().then(data =>
-                this.setState({
-                    data,                    
-                    Extractor: data.Extractor,
-                    // Decisor: data.Decisor,
-                })))
-            .catch(erro => this.setState({ erro }));
+
+        HTTP.get(`extraction/step/report/${id.refextraction}`)
+        .then(res => {
+            let data = res.data;
+            let Extractor = res.data.Extractor;
+            this.setState({ data, Extractor });
+        }).catch(erro => this.setState({ erro }));
     }
     
     render() {

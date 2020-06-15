@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import GraphicAcceptedByYearComponent from '../../components/apresentacao/graphicAcceptedByYearComponent';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from "react-component-export-image";
-import {Button} from 'antd';
+import { Button } from 'antd';
+import {HTTP} from '../../services/config';
 
 class GraphicAcceptedByYear extends React.Component {
 
@@ -12,7 +13,7 @@ class GraphicAcceptedByYear extends React.Component {
             data: [],
         };
         this.getData = this.getData.bind(this);
-        this.componentRef = React.createRef();        
+        this.componentRef = React.createRef();
     }
 
     componentWillMount() {
@@ -21,10 +22,13 @@ class GraphicAcceptedByYear extends React.Component {
 
     getData() {
         const id = this.props.match.params;
-        fetch(`http://localhost:5000/dataGraphic/acceptedByYear/${id.refproject}`)
-            .then(data => data.json().then(data =>
-                this.setState({ data })))
-            .catch(erro => this.setState({ erro }));
+
+        HTTP.get(`dataGraphic/acceptedByYear/${id.refproject}`)
+            .then(res => {
+                let data = res.data;
+                this.setState({ data });
+            }).catch(erro => this.setState({ erro }));
+
     }
 
     render() {
@@ -32,7 +36,7 @@ class GraphicAcceptedByYear extends React.Component {
             <div>
                 <React.Fragment>
                     <h3>Accepted Studies by Publication Year</h3>
-                    <hr />                
+                    <hr />
                     <GraphicAcceptedByYearComponent {...this.state} ref={this.componentRef} />
                     <Button onClick={() => exportComponentAsJPEG(this.componentRef)}>
                         Export As JPEG

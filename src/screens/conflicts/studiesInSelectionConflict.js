@@ -50,7 +50,6 @@ class StudiesInSelectionConflict extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div>
                 <h3>Conflict Studies In Selection Step</h3><hr />

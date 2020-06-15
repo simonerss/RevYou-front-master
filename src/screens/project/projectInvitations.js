@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProjectInvitationsComponent from '../../components/apresentacao/projectInvitationsComponent';
+import {HTTP} from '../../services/config';
 
 class ProjectInvitations extends Component {
 
@@ -19,16 +20,18 @@ class ProjectInvitations extends Component {
 
     getData() {
         const id = this.props.match.params;
-        fetch(`http://localhost:5000/report/show/${id.refproject}`)
-            .then(data => data.json().then(data =>
-                this.setState({ data: data, inviteds: data.Inviteds })
-            ))
-            .catch(erro => this.setState({ erro }));
+
+        HTTP.get(`report/show/${id.refproject}`)
+            .then(res => {
+                let data = res.data;
+                let inviteds = res.data.Inviteds;
+                this.setState({ data, inviteds });
+            }).catch(erro => this.setState({ erro }));
     }
 
     render() {
         return (
-            <div>                
+            <div>
                 <ProjectInvitationsComponent {...this.state} />
             </div>
         );

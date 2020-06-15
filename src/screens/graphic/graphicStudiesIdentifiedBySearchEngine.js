@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import GraphicStudiesIdentifiedBySearchEngineComponent from '../../components/apresentacao/graphicStudiesIdentifiedBySearchEngineComponent';
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from "react-component-export-image";
 import { Button } from 'antd';
+import { HTTP } from '../../services/config';
 
 // Identified by SearchEngine
 class GraphicStudiesIdentifiedBySearchEngine extends Component {
@@ -21,15 +22,16 @@ class GraphicStudiesIdentifiedBySearchEngine extends Component {
 
     getData() {
         const id = this.props.match.params;
-        fetch(`http://localhost:5000/dataGraphic/StudyBySearchEnginee/${id.refproject}`)
-            .then(data => data.json().then(data =>
-                this.setState({ data })))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`dataGraphic/StudyBySearchEnginee/${id.refproject}`)
+            .then(res => {
+                let data = res.data;
+                this.setState({ data });
+            }).catch(erro => this.setState({ erro }));
     }
 
     render() {
         return (
-            <React.Fragment>                
+            <React.Fragment>
                 <GraphicStudiesIdentifiedBySearchEngineComponent {...this.state} ref={this.componentRef} />
                 <Button onClick={() => exportComponentAsJPEG(this.componentRef)}>
                     Export As JPEG

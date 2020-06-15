@@ -27,23 +27,24 @@ class DataExtractionDetails extends Component {
         const extractorid = this.props.match.params.refresearcher;
         const templateformid = this.props.match.params.reftempform;
 
-        fetch(`http://localhost:5000/form/data/extraction/${formid}`)
-            .then(data => data.json().then(data =>
-                this.setState({
-                    data,
-                    ExtractionStep: data.TemplateForm.ExtractionStep,
-                })))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`form/data/extraction/${formid}`)
+        .then(res => {
+            let data = res.data;
+            let ExtractionStep = res.data.TemplateForm.ExtractionStep;
+            this.setState({ data, ExtractionStep });
+        }).catch(erro => this.setState({ erro }));
+        
+        HTTP.get(`study/specificStudy/${studyid}`)
+        .then(res => {
+            let dataStudy = res.data;
+            this.setState({ dataStudy });
+        }).catch(erro => this.setState({ erro }));
 
-        fetch(`http://localhost:5000/study/specificStudy/${studyid}`)
-            .then(dataStudy => dataStudy.json().then(dataStudy =>
-                this.setState({dataStudy})))
-            .catch(erro => this.setState({ erro }));
-
-        fetch(`http://localhost:5000/researcher/by/${extractorid}`)
-            .then(extractor => extractor.json().then(extractor =>
-                this.setState({extractor})))
-            .catch(erro => this.setState({ erro }));
+        HTTP.get(`researcher/by/${extractorid}`)
+        .then(res => {
+            let extractor = res.data;
+            this.setState({ extractor });
+        }).catch(erro => this.setState({ erro }));
 
         HTTP.get(`form/fields/${templateformid}`).then(res => {
             let Field = res.data.map(Field => {

@@ -10,8 +10,6 @@ class ExtractionStepsList extends Component {
         this.state = {
             data: [],
             projectid: '',
-            // Extractor: [],
-            // Decisor: []
         };
         this.getData = this.getData.bind(this);
     }
