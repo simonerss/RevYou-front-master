@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../../src/revyou-css.css';
 import { Accordion, Card, Button, Container, Row as BRow, Col as BCol } from 'react-bootstrap';
-import { Table, Row, Col, Button as ANButton, Input } from 'antd';
+import { Table, Row, Col, Button as ANButton, Input, Tag } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import ReactExport from "react-data-export";
@@ -11,9 +11,6 @@ import { CSVLink } from "react-csv";
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 
-
-// const ProjectDetailsComponent = ({ data, coordinator, researchers, inviteds, MainQuestion, SecondaryQuestion,
-//     StandardQuery, SearchKeyword, SelectionCriteria, Languagues, SearchEngines, /*AdaptedQuery, SelectionSteps, Study, AdaptedQuery, ExtractionSteps,*/ }) => {
 class ProjectDetailsComponent extends React.Component {
     state = {
         searchText: '',
@@ -98,16 +95,13 @@ class ProjectDetailsComponent extends React.Component {
         const data = this.props.data;
         const coordinator = this.props.coordinator;
         const researchers = this.props.researchers;
-        // const inviteds = this.props.inviteds;
         const MainQuestion = this.props.MainQuestion;
         const SecondaryQuestion = this.props.SecondaryQuestion;
         const StandardQuery = this.props.StandardQuery;
         const SearchKeyword = this.props.SearchKeyword;
         const SelectionCriteria = this.props.SelectionCriteria;
-        const Languagues = this.props.Languagues; 
-        const SearchEngines = this.props.SearchEngines; 
-        /*AdaptedQuery, SelectionSteps, Study, AdaptedQuery, ExtractionSteps,*/
-
+        const Languagues = this.props.Languagues;
+        const SearchEngines = this.props.SearchEngines;
 
         const inviteds = (this.props.inviteds).map(data => {
             return ({
@@ -128,6 +122,18 @@ class ProjectDetailsComponent extends React.Component {
             return dia + mes + ano;
         }
 
+        const colorTagInviteSituation = (situation) => {
+            let color = '';
+                    
+            if (situation === 'denied')
+                color = 'red';
+            else if (situation === 'pending')
+                color = 'geekblue';
+            else color = 'green';
+
+            return color;
+        }
+
         const columns = [
             { title: 'Researcher', dataIndex: 'name', key: 'name' },
             { title: 'E-mail', dataIndex: 'email', key: 'email', responsive: ['md'], }
@@ -135,7 +141,21 @@ class ProjectDetailsComponent extends React.Component {
 
         const columnsInviteds = [
             { title: 'E-mail Researcher', dataIndex: 'email', key: 'email', ...this.getColumnSearchProps('email') },
-            { title: 'Situation', dataIndex: 'situation', key: 'situation', ...this.getColumnSearchProps('situation'), responsive: ['md'], },
+            {
+                title: 'Situation',
+                dataIndex: 'situation',
+                key: 'situation',
+                ...this.getColumnSearchProps('situation'),
+                responsive: ['md'],
+                render: situation => {                    
+                    let color = colorTagInviteSituation(situation);
+                    return (
+                        <span>
+                            <Tag color={color}>{situation.toUpperCase()}</Tag>
+                        </span>
+                    );
+                }
+            },
             { title: 'Send Date', dataIndex: 'createdAt', key: 'createdAt', ...this.getColumnSearchProps('createdAt'), responsive: ['md'], },
             { title: 'Updated Date', dataIndex: 'updatedAt', key: 'updatedAt', ...this.getColumnSearchProps('updatedAt'), responsive: ['md'], },
         ];
@@ -327,12 +347,12 @@ class ProjectDetailsComponent extends React.Component {
                                         <Accordion.Collapse eventKey="3">
                                             <Card.Body style={{ padding: '10px 15px', width: '100%' }}>
                                                 <Row>
-                                                    <Col span={24} style={{ padding:'3px',}}>
+                                                    <Col span={24} style={{ padding: '3px', }}>
                                                         <h5><b>Main Question</b></h5><hr />
                                                     </Col>
                                                 </Row>
                                                 <Row className="row row-odd">
-                                                    <Col span={24} style={{ padding:'3px',}}>
+                                                    <Col span={24} style={{ padding: '3px', }}>
                                                         <b>Description:{'\u00A0'}</b> {((MainQuestion.description == null) || (MainQuestion == null)) ? 'Uninformed' : MainQuestion.description}
                                                     </Col>
                                                 </Row><br /><br />
@@ -343,32 +363,32 @@ class ProjectDetailsComponent extends React.Component {
                                                     </Col>
                                                 </Row>
                                                 <Row className="row row-odd">
-                                                    <Col span={12} style={{ padding:'2px 4px',}}>
+                                                    <Col span={12} style={{ padding: '2px 4px', }}>
                                                         <b>Population:{'\u00A0'}</b> {((MainQuestion.population == null) ? 'Uninformed' : MainQuestion.population)}<br />
                                                     </Col>
-                                                    <Col span={12} style={{ padding:'2px 4px',}}>
+                                                    <Col span={12} style={{ padding: '2px 4px', }}>
                                                         <b>Intervation:{'\u00A0'}</b> {(MainQuestion.intervation == null) ? 'Uninformed' : MainQuestion.intervation}<br />
                                                     </Col>
                                                 </Row>
                                                 <Row className="row row-even">
-                                                    <Col span={12} style={{ padding:'2px 4px',}}>
+                                                    <Col span={12} style={{ padding: '2px 4px', }}>
                                                         <b>Control:{'\u00A0'}</b> {(MainQuestion.control == null) ? 'Uninformed' : MainQuestion.control}
                                                     </Col>
-                                                    <Col span={12} style={{ padding:'2px 4px',}}>
+                                                    <Col span={12} style={{ padding: '2px 4px', }}>
                                                         <b>Results:{'\u00A0'}</b> {(MainQuestion.results == null) ? 'Uninformed' : MainQuestion.results}
                                                     </Col>
                                                 </Row>
                                                 <Row className="row row-odd">
-                                                    <Col span={12} style={{ padding:'2px 4px',}}>
+                                                    <Col span={12} style={{ padding: '2px 4px', }}>
                                                         <b>Context:{'\u00A0'}</b> {(MainQuestion.context == null) ? 'Uninformed' : MainQuestion.context}
                                                     </Col>
-                                                    <Col span={12} style={{ padding:'2px 4px',}}>
+                                                    <Col span={12} style={{ padding: '2px 4px', }}>
                                                         <b>Design:{'\u00A0'}</b> {(MainQuestion.design == null) ? 'Uninformed' : MainQuestion.design}
                                                     </Col>
                                                 </Row><br /><br />
 
                                                 <Row>
-                                                    <Col span={24} style={{ padding:'2px 4px',}}>
+                                                    <Col span={24} style={{ padding: '2px 4px', }}>
                                                         <h5><b>Secondary Question:</b></h5><hr />
                                                     </Col>
                                                 </Row>
