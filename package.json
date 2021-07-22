@@ -34,7 +34,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
-    "xlsx": "^0.16.1",
+    "xlsx": "^0.17.0",
     "yup": "^0.26.10"
   },
   "scripts": {
